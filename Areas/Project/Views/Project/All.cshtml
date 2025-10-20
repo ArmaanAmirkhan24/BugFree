@@ -1,0 +1,92 @@
+﻿@model IEnumerable<BugFree.Areas.Project.Models.Project>
+
+<div id="project-container">
+    <div class="project-header">
+        <h1>Your Projects</h1>
+        <p>Select a project to view and manage issues</p>
+    </div>
+    <!-- Add Project Section -->
+    <div class="add-project-section">
+        <div class="add-project-container">
+            <button class="btn-add-project" id="addProjectBtn">
+                <i class="fas fa-plus-circle"></i>
+                Add New Project
+            </button>
+
+            <form method="post" class="add-project-form" id="addProjectForm" asp-area="Project" asp-controller="Project" asp-action="All">
+                <div class="project-form-row">
+                    <input maxlength="55" type="text" name="projectName" class="project-name-input" placeholder="Enter project name" required>
+                   
+                </div>
+                <div class="project-form-row">
+                    <button type="submit" class="project-btn-submit">
+                        <i class="fas fa-plus"></i> Create Project
+                    </button>
+                    <button type="button" class="project-btn-cancel" id="cancelProjectBtn">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="projects-grid">
+        @foreach (var item in Model)
+        {
+            <div class="project-card" data-id="@Html.DisplayFor(modelItem => item.ProjectId)">
+                <div class="card-header">
+                    <h2 class="project-name">@Html.DisplayFor(modelItem => item.ProjectName)</h2>
+                </div>
+                <div class="card-footer">
+                    <a class="project-btn-open" role="button" asp-action="Details" asp-controller="Project" asp-area="Project" asp-route-id='@item.ProjectId'>
+                        <i class="fas fa-folder-open"></i>
+                        Open Project</a>
+                    <button class="project-btn-edit" type="button">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <form style="display:none;" method="post">
+                        @Html.AntiForgeryToken()
+                        <input name="url" value='@Url.RouteUrl("deleteProject")' />
+                        <input type="hidden" name="id" value="@Html.DisplayFor(modelItem =>item.ProjectId)" />
+                        </form>
+                    <button type="button" class="project-btn-delete">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                    
+                </div>
+            </div>
+            
+        }
+    </div>
+    <!-- Edit Form Overlay -->
+    <div class="edit-form-overlay" id="editFormOverlay">
+        <div class="edit-form-container">
+            <span class="edit-form-close" id="editFormClose">
+                <i class="fas fa-times"></i>
+            </span>
+            <h2>
+                Edit Project <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
+                </svg>
+            </h2>
+            <form id="editProjectForm" data-url='@Url.RouteUrl("editProject")'>
+                
+                @Html.AntiForgeryToken()
+                <div class="project-form-row">
+                    <input type="text" id="editProjectName" class="project-name-input" placeholder="Enter project name">
+                   <div class="invalid-feedback">Enter a new name</div>
+                </div>
+                <div class="project-form-row">
+                    <button class="project-btn-submit" type="button">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                    <button type="button" class="project-btn-cancel" id="editCancelBtn">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,244 @@
+﻿@model BugFree.Areas.Project.Models.DetailsViewModel
+<style>
+
+    .body-container {
+    /*remove the container default padding attribute*/
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    /*increase width as per your need*/
+    max-width: 100%;
+    }
+
+
+</style>
+<div class="ticket-container">
+
+
+    <div class="controls">
+        <h2></h2>
+        <p>Select which columns to display:</p>
+        <div class="column-selector" id="columnSelector">
+            <label class="column-option">
+                <input type="checkbox" data-column="id" checked> ID
+            </label>
+            <label class="column-option">
+                <input type="checkbox" data-column="description" checked> Description
+            </label>
+            <label class="column-option">
+                <input type="checkbox" data-column="priority" checked> Priority
+            </label>
+            <label class="column-option">
+                <input type="checkbox" data-column="category" checked> Category
+            </label>
+            <label class="column-option">
+                <input type="checkbox" data-column="deadline" checked> Deadline
+            </label>
+            <label class="column-option">
+                <input type="checkbox" data-column="raised" checked> Raised By
+            </label>
+            <label class="column-option">
+                <input type="checkbox" data-column="modified" checked> Last Modified
+            </label>
+        </div>
+    </div>
+
+    <button id="addTicket" class="btn btn-secondary btn-lg mb-3 mt-3"><i class="fas fa-plus-circle"></i> Add ticket</button>
+    <button id="addMember" class="btn btn-secondary btn-lg mb-3 mt-3"><i class="fas fa-plus-circle"></i> Add member</button>
+    <div id="addMemberOverlay">
+        <div id="addMemberContent">
+            <div class="overlay-header">
+                <h3> Add member</h3>
+                <button class="close-overlay"><i class="fas fa-times"></i></button>
+            </div>
+            <form>
+
+            </form>
+        </div>
+    </div>
+    <form id="ticketCreationForm" style="display:none" class="needs-validation" data-url='@Url.RouteUrl("addNewTicket")' data-id="@Html.DisplayFor(modelItem => modelItem.project.ProjectId)" novalidate>
+        @Html.AntiForgeryToken()
+        <div class="form-group mb-3">
+            <label for="ticketCategory">Category</label>
+            <input pattern=".*\S+.*" required type="text" class="form-control form-control-lg" id="ticketCategory" placeholder="Ticket category">
+            <div class="invalid-feedback">Enter the category</div>
+        </div>
+        <label for="ticketPriority">Priority</label>
+        <select required id="ticketPriority" class="form-select form-select-lg mb-3" aria-label="Priority of the ticket">
+            
+            <option selected value="Low">Low</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="High">High</option>
+            <option value="Urgent">Urgent</option>
+            <option value="Critical">Critical</option>
+        </select>
+        
+        <div class="form-group mb-3">
+            <label for="deadline">Deadline</label>
+            <input required id="deadline" onclick="this.showPicker()" class="form-control form-control-lg" type="date" />
+            <div class="invalid-feedback">Pick a deadline for the ticket</div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="ticketDescription" >Describe the ticket</label>
+            <textarea required class="form-control form-control-lg" id="ticketDescription" placeholder="Enter the description of the ticket"></textarea>
+            <div class="invalid-feedback">Describe the ticket</div>
+        </div>
+
+        <button  class="btn btn-primary btn-lg mb-3" type="button">Create ticket</button>
+        <button id="cancelTicket" type="button" style="background:white;color:black" class="btn btn-secondary mb-3 btn-lg">Cancel</button>
+    </form>
+
+    <div class="table-container">
+        <table id="ticketsTable">
+            <thead>
+                <tr>
+                    <th data-column="id">ID</th>
+                    <th data-column="description">Description</th>
+                    <th data-column="priority">Priority</th>
+                    <th data-column="category">Category</th>
+                    <th data-column="deadline">Deadline</th>
+                    <th data-column="raised">Raised By</th>
+                    <th data-column="modified">Last Modified By</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="ticketTableBody">
+                @foreach (var item in Model.tickets)
+                {
+                    <tr class="ticket-row" data-id="@Html.DisplayFor(modelItem => item.Id)">
+                        <td data-column="id">BF-@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td data-column="description" class="description-cell">
+                            <div class="short-desc">@Html.DisplayFor(modelItem => item.Description)</div>
+                            <div class="full-desc">@Html.DisplayFor(modelItem => item.Description)</div>
+                        </td>
+                        @if (item.Priority.Equals("High"))
+                        {
+                            <td data-column="priority">
+                                <div class="priority-display">
+                                    <div class="priority-circle priority-high">H</div>
+                                    <span>High</span>
+                                </div>
+                            </td>
+                        }
+                        else if (item.Priority.Equals("Low"))
+                        {
+                            <td data-column="priority">
+                                <div class="priority-display">
+                                    <div class="priority-circle priority-low">L</div>
+                                    <span>Low</span>
+                                </div>
+                            </td>
+                        }
+                        else if (item.Priority.Equals("Critical"))
+                        {
+                            <td data-column="priority">
+                                <div class="priority-display">
+                                    <div class="priority-circle priority-critical">C</div>
+                                    <span>Critical</span>
+                                </div>
+                            </td>
+                        }
+                        else if (item.Priority.Equals("Urgent"))
+                        {
+                            <td data-column="priority">
+                                <div class="priority-display">
+                                    <div class="priority-circle priority-urgent">U</div>
+                                    <span>Urgent</span>
+                                </div>
+                            </td>
+                        }
+                        else
+                        {
+                            <td data-column="priority">
+                                <div class="priority-display">
+                                    <div class="priority-circle priority-intermediate">I</div>
+                                    <span>Intermediate</span>
+                                </div>
+                            </td>
+                        }
+                        <td data-column="category">@Html.DisplayFor(modelItem => item.Category)</td>
+                        <td data-column="deadline" class="deadline">@Html.DisplayFor(modelItem => item.Deadline)</td>
+                        <td data-column="raised">
+                            <div class="user-cell">
+
+                                <span>@User.Identity?.Name</span>
+                            </div>
+                        </td>
+                        <td data-column="modified">
+                            <div class="user-cell">
+
+                                <span>@User.Identity?.Name</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropstart">
+                                <button class="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
+                                    </svg>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Something elset</a></li>
+                                    <li><a class="dropdown-item delete-ticket-link">Delete</a></li>
+                                    <li><a class="dropdown-item edit-ticket-link">Edit</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            </table>
+        <form id="ticketDeletionForm" style="display:none;" method="post">
+            @Html.AntiForgeryToken()
+            <input name="url" value='@Url.RouteUrl("deleteTicket")' />
+            
+        </form>
+        </div>
+
+    <div class="overlay needs-validation" id="editTicketOverlay" style="display:none">
+        <div class="overlay-content">
+            <div class="overlay-header">
+                <h3><i class="fas fa-edit"></i> Edit Ticket</h3>
+                <button class="close-overlay"><i class="fas fa-times"></i></button>
+            </div>
+            <form class="overlay-form needs-validation" data-url='@Url.RouteUrl("editTicket")' novalidate>
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="editCategory">Category</label>
+                    <input pattern=".*\S+.*" type="text" id="editCategory" class="form-control" placeholder="Ticket category" required>
+                    <div class="invalid-feedback">Please provide a category</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editPriority">Priority</label>
+                    <select id="editPriority" class="form-select" required>
+                        <option value="Low">Low</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="High">High</option>
+                        <option value="Urgent">Urgent</option>
+                        <option value="Critical">Critical</option>
+                    </select>
+                    <div class="invalid-feedback">Please provide a priority</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDeadline">Deadline</label>
+                    <input type="date" id="editDeadline" class="form-control" required>
+                    <div class="invalid-feedback">Please provide a deadline</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDescription">Description</label>
+                    <textarea id="editDescription" class="form-control" placeholder="Enter the description of the ticket" required></textarea>
+                    <div class="invalid-feedback">Please provide a description</div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel">Cancel</button>
+                    <button type="button" class="btn-update">Update Ticket</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+  
+

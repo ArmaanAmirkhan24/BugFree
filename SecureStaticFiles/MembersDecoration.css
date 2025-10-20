@@ -1,0 +1,33 @@
+﻿#addMember {
+    background: #48cae4;
+}
+#addMemberOverlay {
+    position: fixed;
+    display: none;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.7);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+}
+#addMemberContent{
+    border-radius : 0.75rem;
+    width:90%;
+    height:75%;
+    background-color:white;
+    
+}
+#addMemberOverlay .close-overlay{
+    margin-right:1rem;
+}
+#addMemberOverlay .overlay-header{
+    border-bottom:none;
+}
+#addMemberOverlay .overlay-header h3{
+    margin:0 auto
+}

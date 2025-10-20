@@ -1,0 +1,92 @@
+[
+  {
+    "ContainingType": "BugFree.Areas.Project.Controllers.ApiProjectController",
+    "Method": "DeleteProject",
+    "RelativePath": "projects/delete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "deleteProject"
+  },
+  {
+    "ContainingType": "BugFree.Areas.Project.Controllers.ApiProjectController",
+    "Method": "EditProject",
+    "RelativePath": "projects/edit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "editProject"
+  },
+  {
+    "ContainingType": "BugFree.Areas.Project.Controllers.ApiProjectController",
+    "Method": "AddTicket",
+    "RelativePath": "projects/tickets/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticket",
+        "Type": "BugFree.Areas.Project.Models.RequestModels.TicketObject",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "addNewTicket"
+  },
+  {
+    "ContainingType": "BugFree.Areas.Project.Controllers.ApiProjectController",
+    "Method": "DeleteTicket",
+    "RelativePath": "projects/tickets/delete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "deleteTicket"
+  },
+  {
+    "ContainingType": "BugFree.Areas.Project.Controllers.ApiProjectController",
+    "Method": "EditTicket",
+    "RelativePath": "projects/tickets/edit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketObject",
+        "Type": "BugFree.Areas.Project.Models.RequestModels.TicketObject",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "editTicket"
+  }
+]

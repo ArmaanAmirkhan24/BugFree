@@ -1,0 +1,487 @@
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+    color: #2b2d42;
+    min-height: 100vh;
+    
+ 
+}
+
+.project-container {
+    /*max-width: 112.5em;*/
+    width: 100%;
+    margin: 0 auto;
+}
+
+.project-header {
+    text-align: center;
+    /*margin-bottom: 3.75em;*/
+    margin:0 auto;
+    padding: 1.25em;
+   
+}
+
+    .project-header h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 0.9em;
+        background: linear-gradient(45deg, #4361ee, #3a0ca3);
+        color:transparent;
+        background-clip: text;
+    }
+
+    .project-header p {
+        font-size: 1.3rem;
+        color: #6c757d;
+        max-width: 37.5em;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /*21.875em*/
+    gap: 1.875em;
+    margin-top: 1.875em;
+}
+
+.project-card {
+    background: #ffffff;
+    border-radius: 1em;
+    box-shadow: 0 0.625em 1.875em rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    
+    overflow: auto;
+    position: relative;
+}
+
+.project-container a {
+    text-decoration: none;
+}
+
+.project-card:hover {
+    transform: translateY(-0.625em);
+    box-shadow: 0 0.9375em 2.5em rgba(67, 97, 238, 0.15);
+}
+
+.card-header {
+    padding: 3.125em 1.5625em;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e6edff 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: 0.0625em solid #edf2f4;
+    max-height: 11.25em;
+}
+
+.project-name {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #2b2d42;
+    overflow-wrap: break-word;
+    overflow-y:auto;
+    hyphens:auto;
+    line-height: 1.4;
+}
+
+.card-footer {
+    padding: 1.5625em;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.9375em;
+}
+
+.project-btn-open {
+    background: #4361ee;
+    color: white;
+    border: none;
+    padding: 1em 1.875em;
+    border-radius: 0.75em;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 15.625em;
+    letter-spacing: 0.03125em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.project-btn-edit {
+    background: #ffc107;
+    color: #2b2d42;
+    border: none;
+    padding: 1em 1.875em;
+    border-radius: 0.75em;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 15.625em;
+    letter-spacing: 0.03125em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.project-btn-delete {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 1em 1.875em;
+    border-radius: 0.75em;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 15.625em;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.project-btn-open:hover {
+    background: #3a56d4;
+    transform: translateY(-3px);
+    box-shadow: 0 0.5em 1.25em rgba(67, 97, 238, 0.35);
+}
+
+.project-btn-edit:hover {
+    background: #e0a800;
+    transform: translateY(-3px);
+    box-shadow: 0 0.5em 1.25em rgba(255, 193, 7, 0.35);
+}
+
+.project-btn-delete:hover {
+    background: #c82333;
+    transform: translateY(-3px);
+    box-shadow: 0 0.5em 1.25em rgba(220, 53, 69, 0.35);
+}
+
+/* Add Project Section */
+.add-project-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3.125em;
+    transition: all 0.3s ease;
+}
+
+.add-project-container {
+    background: white;
+    border-radius: 1em;
+    box-shadow: 0 0.625em 1.875em rgba(0, 0, 0, 0.08);
+    padding: 1.5625em;
+    
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-add-project {
+    background: #4cc9a7;
+    color: white;
+    border: none;
+    padding: 1.125em 2.8125em;
+    border-radius: 0.75em;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    box-shadow: 0 0.375em 0.9375em rgba(76, 201, 167, 0.3);
+}
+
+    .btn-add-project:hover {
+        background: #3da58e;
+        transform: translateY(-3px);
+        box-shadow: 0 0.625em 1.5625em rgba(76, 201, 167, 0.4);
+    }
+
+.add-project-form {
+    display: none;
+    width: 100%;
+    margin-top: 1.5625em;
+    animation: fadeIn 0.4s ease;
+}
+
+    .add-project-form.active {
+        display: flex;
+        flex-direction: column;
+    }
+
+.project-form-row {
+    display: flex;
+    gap: 0.9375em;
+    margin-bottom: 1.25em;
+    flex-wrap: wrap;
+}
+
+.project-name-input {
+    flex: 1;
+    min-width: 15.625em;
+    padding: 1.125em 1.25em;
+    border: 0.125em solid #e0e7ff;
+    border-radius: 0.75em;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+    .project-name-input:focus {
+        border-color: #4361ee;
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.2);
+    }
+
+.project-btn-submit {
+    background: #4361ee;
+    color: white;
+    border: none;
+    padding: 1.125em 2.1875em;
+    border-radius: 0.75em;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.625em;
+    min-width: 11.25em;
+}
+
+.project-btn-cancel {
+    background: #f8f9fa;
+    color: #6c757d;
+    border: 0.125em solid #e9ecef;
+    padding: 1.125em 2.1875em;
+    border-radius: 0.75em;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 9.375em;
+}
+
+.project-btn-submit:hover {
+    background: #3a56d4;
+    transform: translateY(-2px);
+    box-shadow: 0 0.375em 0.9375em rgba(67, 97, 238, 0.3);
+}
+
+.project-btn-cancel:hover {
+    background: #e9ecef;
+    border-color: #dee2e6;
+}
+
+/* Edit Form Overlay */
+.edit-form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+    .edit-form-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+.edit-form-container {
+    background: white;
+    border-radius: 1.25em;
+    box-shadow: 0 0.9375em 3.125em rgba(0, 0, 0, 0.3);
+    padding: 2.5em;
+    max-width: 37.5em;
+    width: 90%;
+    position: relative;
+    transform: translateY(1.25em);
+    transition: transform 0.4s ease;
+}
+
+.edit-form-overlay.active .edit-form-container {
+    transform: translateY(0);
+}
+
+.edit-form-close {
+    position: absolute;
+    top: 1.25em;
+    right: 1.25em;
+    font-size: 1.8rem;
+    color: #6c757d;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .edit-form-close:hover {
+        color: #4361ee;
+        transform: rotate(90deg);
+    }
+
+.edit-form-container h2 {
+    font-size: 2rem;
+    color: #2b2d42;
+    margin-bottom: 1.875em;
+    text-align: center;
+}
+
+/* Smart TV Optimizations */
+/*
+@media (min-width: 1920px) {
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(28.125em, 1fr));
+        gap: 2.5em;
+    }
+
+    .project-name {
+        font-size: 2.2rem;
+    }
+
+    .project-btn-open,
+    .project-btn-edit,
+    .project-btn-delete {
+        padding: 1.25em;
+        font-size: 1.4rem;
+        max-width: 18.75em;
+    }
+
+    .card-header {
+        min-height: 13.75em;
+    }
+
+    .project-header h1 {
+        font-size: 3.5rem;
+    }
+
+    .project-header p {
+        font-size: 1.5rem;
+    }
+
+    .btn-add-project {
+        padding: 1.5em 3.75em;
+        font-size: 1.5rem;
+    }
+
+    .project-name-input {
+        padding: 1.375em 1.5625em;
+        font-size: 1.4rem;
+    }
+
+    .project-btn-submit,
+    .project-btn-cancel {
+        padding: 1.375em 2.5em;
+        font-size: 1.4rem;
+    }
+
+    .edit-form-container {
+        padding: 3.125em;
+    }
+
+        .edit-form-container h2 {
+            font-size: 2.5rem;
+        }
+}
+    */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .project-header p {
+        font-size: 1.1rem;
+    }
+
+    .project-form-row {
+        flex-direction: column;
+        gap: 0.9375em;
+    }
+
+    .project-btn-submit,
+    .project-btn-cancel {
+        width: 100%;
+    }
+
+    .card-footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-btn-open,
+    .project-btn-edit,
+    .project-btn-delete {
+        max-width: 100%;
+    }
+}
+
+/* Focus styles */
+.project-btn-open:focus,
+.project-btn-edit:focus,
+.project-btn-delete:focus,
+.project-card:focus,
+.btn-add-project:focus,
+.project-name-input:focus,
+.project-btn-submit:focus,
+.project-btn-cancel:focus {
+    outline: 0.1875em solid #4361ee;
+    outline-offset: 0.1875em;
+    box-shadow: 0 0 0 0.375em rgba(67, 97, 238, 0.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
