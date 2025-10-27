@@ -17,8 +17,8 @@
 }
 #addMemberContent{
     border-radius : 0.75rem;
-    width:90%;
-    height:75%;
+    width:60%;
+    height:55%;
     background-color:white;
     
 }
@@ -29,5 +29,11 @@
     border-bottom:none;
 }
 #addMemberOverlay .overlay-header h3{
-    margin:0 auto
+    margin:0 auto;
+    
+   
+}
+#userSearchForm input {
+    width:95%;
+    margin: 0 auto;
 }
